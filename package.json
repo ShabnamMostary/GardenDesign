@@ -1,0 +1,36 @@
+{
+  "name": "gardendesign",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/nodemon server.js",
+    "dev:migrate": "./node_modules/.bin/env-cmd ./node_modules/.bin/sequelize db:migrate --env development --config ./config/sequelize.js",
+    "dev:undo":"./node_modules/.bin/env-cmd ./node_modules/.bin/sequelize db:migrate:undo --env development --config ./config/sequelize.js",
+    "lint": "./node_modules/.bin/eslint --format codeframe .",
+    "lint:fix": "./node_modules/.bin/eslint --fix --format codeframe .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shabnam2016/GardenDesign.git"
+  },
+  "author": "shabnam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shabnam2016/GardenDesign/issues"
+  },
+  "homepage": "https://github.com/shabnam2016/GardenDesign#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "eslint": "^7.23.0",
+    "nodemon": "^2.0.7"
+  }
+}
