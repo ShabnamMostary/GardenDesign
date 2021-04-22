@@ -1,5 +1,7 @@
-const models = require('../models')
-const getAllPlants = async (request, response) => {
+import models from '../models'
+
+// eslint-disable-next-line import/prefer-default-export
+export const getAllPlants = async (request, response) => {
   try {
     const plants = await models.Plants.findAll()
 
@@ -10,4 +12,19 @@ const getAllPlants = async (request, response) => {
     return response.status(500).send('Unable to retrieve plants, please try again')
   }
 }
-module.exports = { getAllPlants }
+export const getPlantsByName = async (requst, response) => {
+  try {
+    const { name } = requst.params
+    const result = await models.Plants.findOne({
+      where: {
+        name: { [models.Op.like]: `%${name}%` },
+      },
+    })
+
+    return result
+      ? response.send(result)
+      : response.sendStatus(404)
+  } catch (error) {
+    return response.status(500).send('Unable to retrieve plant, please try again')
+  }
+}
