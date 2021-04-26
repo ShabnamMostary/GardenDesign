@@ -59,6 +59,7 @@ export default ({ location }) => {
           ? (
             <>
               <PlantDetails
+                id={plant.id}
                 name={plant.name}
                 description={plant.description}
                 sun={plant.optimal_sun}
