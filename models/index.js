@@ -13,11 +13,14 @@ const connection = new Sequelize(config.database, config.username, config.passwo
 })
 const Plants = PlantsModel(connection, Sequelize)
 const Users = UsersModel(connection, Sequelize)
-const Gardens = GardensModel(connection, Sequelize, Plants, Users)
+const Gardens = GardensModel(connection, Sequelize, Users, Plants)
 
-// Gardens.hasMany(Plants)
-// Gardens.belongsTo(Users)
 Plants.belongsToMany(Users, { through: Gardens })
+Users.belongsToMany(Plants, { through: Gardens })
+Gardens.belongsTo(Plants)
+// Plants.hasMany(Gardens)
+// Gardens.belongsTo(Users)
+// Users.hasMany(Gardens)
 
 module.exports = {
   Plants,

@@ -3,12 +3,19 @@ import models from '../models'
 // eslint-disable-next-line import/prefer-default-export
 export const getGardenByUser = async (request, response) => {
   try {
-    const garden = await models.Gardens.findAll()
+    const { user } = request.params
+    const result = await models.Gardens.findAll({
+      where: { userEmail: user },
+      include: [
+        { model: models.Plants },
+      ],
+    })
 
-    return garden
-      ? response.send(garden)
+    return result
+      ? response.send(result)
       : response.sendStatus(404)
   } catch (error) {
+    console.log(error)
     return response.status(500).send('Unable to retrieve garden, please try again')
   }
 }
