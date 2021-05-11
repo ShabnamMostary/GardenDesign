@@ -1,7 +1,7 @@
 import axios from 'axios'
-
-export default async () => {
-  const { data } = await axios.get(`${API_BASE_URL}/garden`) // eslint-disable-line no-undef
+// to show my garden
+export default async (email) => {
+  const { data } = await axios.get(`${API_BASE_URL}/garden/${email}`) // eslint-disable-line no-undef
 
   return data
 }

@@ -33,6 +33,7 @@ export default ({
     </div>
 
     <button type="submit" onClick={() => addPlantToGarden('shaneali184@gmail.com', id)}>Add to my garden</button>
+
     <div>
       Optimal Sun:
       {` ${sun}`}

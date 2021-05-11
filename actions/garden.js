@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+// to add plant to garden
 export default async (email, id) => {
   const data = { userEmail: email, plantId: id }
 

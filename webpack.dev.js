@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 const webpack = require('webpack')
 
 module.exports = {
@@ -25,6 +25,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       API_BASE_URL: JSON.stringify("http://localhost:1337/api"),
+      Base_URL: JSON.stringify("http://localhost:1337/"),
+      'process.env.REACT_APP_AUTH0_DOMAIN' : JSON.stringify(process.env.REACT_APP_AUTH0_DOMAIN),
+      'process.env.REACT_APP_AUTH0_CLIENT_ID' : JSON.stringify(process.env.REACT_APP_AUTH0_CLIENT_ID),
     }),
   ],
 };

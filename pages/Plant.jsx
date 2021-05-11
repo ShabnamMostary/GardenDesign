@@ -54,6 +54,7 @@ export default ({ location }) => {
 
   return (
     <Page>
+
       {
         plantName
           ? (
