@@ -33,20 +33,9 @@ module.exports = {
       },
       deletedAt: { type: Sequelize.DATE },
     })
-    await queryInterface.createTable('users', {
-      email: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
-      password: { type: Sequelize.STRING, allowNull: false },
-      createdAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-      },
-      deletedAt: { type: Sequelize.DATE },
-    })
 
     return queryInterface.createTable('gardens', {
-      userEmail: { type: Sequelize.STRING, references: { model: 'users', key: 'email' } },
+      userEmail: { type: Sequelize.STRING },
       plantId: { type: Sequelize.INTEGER, references: { model: 'plants', key: 'id' } },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
@@ -65,7 +54,6 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
     await queryInterface.dropTable('gardens')
-    await queryInterface.dropTable('users')
 
     return queryInterface.dropTable('plants')
   },

@@ -30,6 +30,8 @@ export const addPlantToGarden = async (request, response) => {
 
     return response.status(201).send(newPlant)
   } catch (error) {
+    console.log(error)
+
     return response.status(500).send('Unable to add plant to garden, please try again')
   }
 }

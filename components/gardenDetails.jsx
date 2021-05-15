@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useAuth0 } from '@auth0/auth0-react'
 import deletePlantFromGarden from '../actions/gardenDelete'
 
 const Details = styled.div `
@@ -20,16 +21,20 @@ const Details = styled.div `
 
 export default ({
   id, name, image,
-}) => (
-  <Details key={`${id}`}>
-    <h3>{`${name}`}</h3>
-    <div>
-      {/* {' '} */}
-      <img src={`https://res-4.cloudinary.com/do6bw42am/image/upload/c_scale,f_auto,h_300/v1/${image}`} alt="plant" />
-    </div>
+}) => {
+  const { user } = useAuth0()
 
-    <button type="submit" onClick={() => deletePlantFromGarden('shaneali184@gmail.com', id)}>
-      Delete plant
-    </button>
-  </Details>
-)
+  return (
+    <Details key={`${id}`}>
+      <h3>{`${name}`}</h3>
+      <div>
+        {/* {' '} */}
+        <img src={`https://res-4.cloudinary.com/do6bw42am/image/upload/c_scale,f_auto,h_300/v1/${image}`} alt="plant" />
+      </div>
+
+      <button type="submit" onClick={() => deletePlantFromGarden(user.email, id)}>
+        Delete plant
+      </button>
+    </Details>
+  )
+}
