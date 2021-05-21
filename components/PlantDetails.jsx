@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import styled from 'styled-components'
 import addPlantToGarden from '../actions/garden'
@@ -15,6 +15,10 @@ const Details = styled.div `
     font-weight:bold;
     font-size:25px;
   }
+  > h2 {
+    background-color:red;
+    font-size:20px;
+  }
   > div {
     padding:5px;
     }
@@ -25,6 +29,8 @@ export default ({
   spacing, water, feeding, care, diseases, pests, harvest, storage, image,
 }) => {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0()
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const filterDuplicate = async (pid) => {
     if (!isAuthenticated) {
       loginWithRedirect()
@@ -32,13 +38,22 @@ export default ({
       const plantList = await userPlantList(user.email)
       const result = plantList.filter(plant => plant.plantId === pid)
 
-      if (result.length === 1) addPlantToGarden(user.email, id)
-      else alert('Already added')
+      if (result.length === 0) {
+        addPlantToGarden(user.email, id)
+        setSuccess('Added to garden!')
+      } else {
+        setError('Already added in your garden!!')
+      }
     }
   }
 
   return (
     <Details>
+      <h2>{error}</h2>
+      <h2 style={{ backgroundColor: 'green' }}>
+        { success}
+        {' '}
+      </h2>
       <h3>{`${name}`}</h3>
       <div>
         {` ${description}`}
