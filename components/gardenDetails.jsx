@@ -20,7 +20,7 @@ const Details = styled.div `
 `
 
 export default ({
-  id, name, image,
+  id, name, image, deletePl,
 }) => {
   const { user } = useAuth0()
 
@@ -32,7 +32,13 @@ export default ({
         <img src={`https://res-4.cloudinary.com/do6bw42am/image/upload/c_scale,f_auto,h_300/v1/${image}`} alt="plant" />
       </div>
 
-      <button type="submit" onClick={() => deletePlantFromGarden(user.email, id)}>
+      <button
+        type="submit"
+        onClick={() => {
+          deletePlantFromGarden(user.email, id)
+          deletePl(id)
+        }}
+      >
         Delete plant
       </button>
     </Details>

@@ -8,6 +8,11 @@ export default () => {
   const { user, isAuthenticated } = useAuth0()
 
   const [garden, setGarden] = useState([])
+  const deletePlant = (id) => {
+    const newGarden = garden.filter(data => data.plant.id !== id)
+
+    setGarden(newGarden)
+  }
   const mystyle = {
     color: 'white',
     backgroundColor: '#ffc107',
@@ -30,7 +35,6 @@ export default () => {
   return (
     isAuthenticated ? (
       <Page>
-        <div>{user.email}</div>
         {
           garden
             ? (
@@ -41,6 +45,7 @@ export default () => {
                   id={data.plant.id}
                   name={data.plant.name}
                   image={data.plant.image_url}
+                  deletePl={deletePlant}
                 />
 
               )))
