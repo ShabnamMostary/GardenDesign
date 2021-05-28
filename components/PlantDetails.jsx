@@ -9,7 +9,7 @@ const Details = styled.div `
   font-weight: 400;
   margin: 20px 0;
   text-align: center;
-  background:white;
+  
   color:black ;
   > h3 {
     font-weight:bold;
