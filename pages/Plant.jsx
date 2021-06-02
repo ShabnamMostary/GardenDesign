@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Page from '../components/Page'
+import Page from '../components/ComponentPage'
 import PlantDetails from '../components/PlantDetails'
 import fetchPlantDetails from '../actions/plantDetails'
 
